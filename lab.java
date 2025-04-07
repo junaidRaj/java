@@ -272,3 +272,85 @@
 //         intern.work();
 //     }
 // }
+
+abstract class AbstractShape {
+    private int border;
+
+    public AbstractShape(int border) {
+        this.border = border;
+    }
+
+    public abstract void draw();
+
+    public double area() {
+        return 0;
+    }
+
+    public int getBorder() {
+        return border;
+    }
+
+    public void setBorder(int border) {
+        this.border = border;
+    }
+}
+
+class MyRectangle extends AbstractShape {
+    private double width;
+    private double height;
+
+    public MyRectangle(int border, double width, double height) {
+        super(border);
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing MyRectangle with border " + getBorder());
+    }
+
+    @Override
+    public double area() {
+        return width * height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+}
+
+class MySquare extends MyRectangle {
+    public MySquare(int border, double side) {
+        super(border, side, side);
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing MySquare with border " + getBorder());
+    }
+}
+
+public class lab {
+    public static void main(String[] args) {
+        MyRectangle rect = new MyRectangle(2, 5.0, 3.0);
+        rect.draw();
+        System.out.println("Area of MyRectangle: " + rect.area());
+
+        MySquare sq = new MySquare(1, 4.0);
+        sq.draw();
+        System.out.println("Area of MySquare: " + sq.area());
+    }
+}
